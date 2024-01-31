@@ -316,8 +316,8 @@
       </div>
 
     <div class ="lyrics">Ikaw at ako</div>
-    <audio class ="audio"controls>
-        <source src="Ikaw at ako ( with lyrics)  johnoy danao.mp3" type="audio/mp3">
+    <audio class="audio" controls autoplay loop>
+      <source src="ikawatako.mp3" type="audio/mp3">
     </audio>
 
     <div id="slider">
@@ -343,6 +343,30 @@
         <img src="p5.jpg" alt/>
     </label>
     </div>
+    <script>
+      onload = () => {
+          const c = setTimeout(() => {
+              document.body.classList.remove("not-loaded");
+              clearTimeout(c);
+          }, 1000);
+      };
 
+      let currentIndex = 0;
+
+      function nextSlide() {
+          const radios = document.querySelectorAll('input[name="slider"]');
+          radios[currentIndex].checked = false;
+
+          currentIndex = (currentIndex + 1) % radios.length;
+
+          radios[currentIndex].checked = true;
+      }
+
+      setInterval(nextSlide, 2500);
+
+      document.querySelector('.audio').addEventListener('canplay', function() {
+          this.volume = 0.03; 
+      });
+    </script>
   </body>
 </html>
